@@ -12,19 +12,21 @@ A static web app with no backend and no database. Every operation runs 100% loca
 
 Page thumbnails are rendered at low resolution with PDF.js, so even long documents stay fast.
 
-## Libraries (loaded from CDN)
+## Libraries (embedded — no CDN)
 
-- [pdf-lib](https://pdf-lib.js.org/) (MIT) — PDF manipulation
-- [PDF.js](https://mozilla.github.io/pdf.js/) — thumbnail rendering
-- [JSZip](https://stuk.github.io/jszip/) — ZIP download for split pages
+All libraries are embedded directly in `index.html`, so the page makes **zero external requests** and works even if a CDN is down or blocked. The PDF.js worker is also embedded and loaded via a Blob URL at runtime.
+
+- [pdf-lib](https://pdf-lib.js.org/) 1.17.1 (MIT) — PDF manipulation
+- [PDF.js](https://mozilla.github.io/pdf.js/) 3.11.174 (Apache-2.0) — thumbnail rendering
+- [JSZip](https://stuk.github.io/jszip/) 3.10.1 (MIT/GPLv3 dual) — ZIP download for split pages
 
 Not supported: password-protected or encrypted PDFs.
 
 ## Internationalization (i18n)
 
-The UI is available in English and Japanese, switchable with the **EN / 日本語** toggle in the top-right corner. On first visit the language is detected from the browser's language setting (Japanese environments get Japanese, everything else gets English), and the chosen language is saved in `localStorage` so it persists on the next visit.
+The UI is available in English, Japanese, and Thai, switchable with the **EN / 日本語 / ไทย** toggle in the top-right corner. On first visit the language is detected from the browser's language setting (Thai environments get Thai, Japanese environments get Japanese, everything else gets English), and the chosen language is saved in `localStorage` so it persists on the next visit.
 
-All user-facing strings are managed centrally in a single dictionary object (`I18N`, with `en` and `ja` locales) at the top of the script in `index.html` — nothing is hard-coded in the markup or the logic. To add another language, add a locale object with the same keys.
+All user-facing strings are managed centrally in a single dictionary object (`I18N`, with `en`, `ja`, and `th` locales) in the script in `index.html` — nothing is hard-coded in the markup or the logic. To add another language, add a locale object with the same keys.
 
 ## Deploy to Cloudflare Pages (free)
 
