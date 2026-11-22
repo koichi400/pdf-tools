@@ -12,9 +12,9 @@ A static web app with no backend and no database. Every operation runs 100% loca
 
 Page thumbnails are rendered at low resolution with PDF.js, so even long documents stay fast.
 
-## Libraries (embedded — no CDN)
+## Libraries (loaded from CDN)
 
-All libraries are embedded directly in `index.html`, so the page makes **zero external requests** and works even if a CDN is down or blocked. The PDF.js worker is also embedded and loaded via a Blob URL at runtime.
+Libraries are loaded from the jsDelivr CDN with pinned versions, keeping `index.html` small and easy to maintain.
 
 - [pdf-lib](https://pdf-lib.js.org/) 1.17.1 (MIT) — PDF manipulation
 - [PDF.js](https://mozilla.github.io/pdf.js/) 3.11.174 (Apache-2.0) — thumbnail rendering
